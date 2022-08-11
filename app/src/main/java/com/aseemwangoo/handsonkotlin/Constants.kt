@@ -22,8 +22,10 @@ const val ONDEMAND_BACKUP_WORK_NAME = "on_demand_backup_work"
 const val PERIODIC_BACKUP_WORK_NAME = "periodic_backup_work"
 
 const val OUTPUT_PATH = "my_app_backups"
+const val OUTPUT_PATH2 = "my_app_backups_two"
 
 const val BACKUP_FILE_NAME = "backup_data.txt"
+const val BACKUP_FILE_NAME2 = "backup_data2.txt"
 
 const val TAG_BACKUP = "TAG_BACKUP"
 const val TAG_FILE = "TAG_FILE"

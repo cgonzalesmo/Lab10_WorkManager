@@ -7,14 +7,17 @@ import android.app.NotificationManager
 import android.content.Context
 import android.net.Uri
 import android.os.Build
+import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.aseemwangoo.handsonkotlin.BACKUP_FILE_NAME
+import com.aseemwangoo.handsonkotlin.BACKUP_FILE_NAME2
 import com.aseemwangoo.handsonkotlin.CHANNEL_ID
 import com.aseemwangoo.handsonkotlin.DELAY_TIME_MILLIS
 import com.aseemwangoo.handsonkotlin.NOTIFICATION_ID
 import com.aseemwangoo.handsonkotlin.NOTIFICATION_TITLE
 import com.aseemwangoo.handsonkotlin.OUTPUT_PATH
+import com.aseemwangoo.handsonkotlin.OUTPUT_PATH2
 import com.aseemwangoo.handsonkotlin.R
 import com.aseemwangoo.handsonkotlin.VERBOSE_NOTIFICATION_CHANNEL_DESCRIPTION
 import com.aseemwangoo.handsonkotlin.VERBOSE_NOTIFICATION_CHANNEL_NAME
@@ -66,6 +69,29 @@ fun saveToFile(applicationContext: Context, content: String): Uri {
         outputDir.mkdirs()
     }
     val outputFile = File(outputDir, BACKUP_FILE_NAME)
+    var out: FileOutputStream? = null
+
+    try {
+        out = FileOutputStream(outputFile)
+        outputFile.appendText(content)
+    } finally {
+        out?.let {
+            try {
+                it.close()
+            } catch (ignore: IOException) {
+            }
+        }
+    }
+
+    return Uri.fromFile(outputFile)
+}
+fun saveToFile2(applicationContext: Context, content: String): Uri {
+    Log.i("SAVE_FILE", "AQUI IMPRIME");
+    val outputDir = File(applicationContext.filesDir, OUTPUT_PATH2)
+    if (!outputDir.exists()) {
+        outputDir.mkdirs()
+    }
+    val outputFile = File(outputDir, BACKUP_FILE_NAME2)
     var out: FileOutputStream? = null
 
     try {

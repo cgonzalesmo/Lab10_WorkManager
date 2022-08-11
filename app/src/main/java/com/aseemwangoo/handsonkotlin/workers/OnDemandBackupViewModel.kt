@@ -55,8 +55,12 @@ class OnDemandBackupViewModel(application: Application) : AndroidViewModel(appli
             .setConstraints(constraints)
             .addTag(TAG_FILE)
             .build()
+        val saveInFile1 = OneTimeWorkRequest.Builder(FileWorker2::class.java)
+            .setConstraints(constraints)
+            .addTag(TAG_FILE)
+            .build()
 
-        continuation = continuation.then(saveInFile)
+        continuation = continuation.then(listOf(saveInFile,saveInFile1))
         continuation.enqueue()
     }
 
